@@ -28,7 +28,7 @@ public class OGLTest {
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
 			GL11.glPushMatrix(); {
-
+				//calculates value
 				double value = Mouse.getX();
 				value = (value / 100) - 3.2;
 				GL11.glTranslated(value, 0, 0);
