@@ -22,8 +22,10 @@ public class OGLTest {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
 		boolean quit = false;
+		double angle = 0;
 
 		while (!quit) {
+			angle += .1;
 			// Clear the screen.
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
@@ -32,6 +34,7 @@ public class OGLTest {
 				double value = Mouse.getX();
 				value = (value / 100) - 3.2;
 				GL11.glTranslated(value, 0, 0);
+				GL11.glRotated(angle, 0, 0, 1);
 				drawTriangles();
 
 			}
