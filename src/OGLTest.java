@@ -25,7 +25,7 @@ public class OGLTest {
 		double angle = 0;
 
 		while (!quit) {
-			angle += .1;
+			angle += 2;
 			// Clear the screen.
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
@@ -40,6 +40,7 @@ public class OGLTest {
 			}
 			GL11.glPopMatrix();
 
+			Display.sync(60);
 			Display.update();
 
 			if (Display.isCloseRequested()
