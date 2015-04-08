@@ -26,7 +26,7 @@ public class OGLTest {
 			float depth = ((float)numBlades-i)/numBlades;
 			Color c = new Color(.1f, depth*.7f + .3f, .1f);
 			float vel = (float) Math.random()*.05f;
-			testBlade = new Blade((float)Math.random()*6.8f - 3.4f, -2.6f+depth*1.6f, .1f*(1.5f-depth), .5f*(1.5f-depth), (float)Math.random() -.5f, .8f, vel, c);
+			testBlade = new Blade((float)Math.random()*6.8f - 3.4f, -2.6f+depth*1.6f, .1f*(2f-depth), .5f*(1.5f-depth), (float)Math.random() -.5f, .8f, vel, c);
 			listOfBlades.add(testBlade);
 		}
 		// Init OpenGL
