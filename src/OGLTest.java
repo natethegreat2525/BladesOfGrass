@@ -20,7 +20,7 @@ public class OGLTest {
 		ArrayList<Blade> listOfBlades = new ArrayList<Blade>();
 		Blade testBlade;
 		for(int i = 0; i < 100; i++){
-			testBlade = new Blade((float)Math.random()*6.8f - 3.4f, 0, .1f, .5f, (float)Math.random() -.5f, .5f);
+			testBlade = new Blade((float)Math.random()*6.8f - 3.4f, 0, .1f, .5f, (float)Math.random() -.5f, .5f, 0.01f);
 			listOfBlades.add(testBlade);
 		}
 		// Init OpenGL
@@ -44,6 +44,7 @@ public class OGLTest {
 			GL11.glPushMatrix(); {
 				for(Blade current : listOfBlades){
 					current.drawGrass();
+					current.update();
 				}
 			}
 			GL11.glPopMatrix();

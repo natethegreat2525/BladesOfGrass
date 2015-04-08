@@ -8,14 +8,16 @@ public class Blade {
 	float height;
 	float sway;
 	float alpha;
+	float swayVelocity;
 	
-	public Blade(float x, float y, float width, float height, float sway, float alpha){
+	public Blade(float x, float y, float width, float height, float sway, float alpha, float swayVelocity){
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		this.sway = sway;
 		this.alpha = alpha;
+		this.swayVelocity = swayVelocity;
 	}
 	
 	public void drawGrass(){
@@ -36,5 +38,14 @@ public class Blade {
 		GL11.glVertex2f(x - width/2, y);
 
 		GL11.glEnd();
+	}
+	
+	public void update(){
+		sway += swayVelocity;
+		if(sway > 0){
+			swayVelocity -= .01f; 
+		}else{
+			swayVelocity += .01f;
+		}
 	}
 }
