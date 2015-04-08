@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -14,7 +16,13 @@ public class OGLTest {
 			e.printStackTrace();
 			System.exit(0);
 		}
-
+		
+		ArrayList<Blade> listOfBlades = new ArrayList<Blade>();
+		Blade testBlade;
+		for(int i = 0; i < 100; i++){
+			testBlade = new Blade((float)Math.random()*6.8f - 3.4f, 0, .1f, .5f, (float)Math.random() -.5f, .5f);
+			listOfBlades.add(testBlade);
+		}
 		// Init OpenGL
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
@@ -34,25 +42,12 @@ public class OGLTest {
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
 			GL11.glPushMatrix(); {
-				GL11.glRotated(0, 0, 0, 1);
-				drawTriangles(1);
-
+				for(Blade current : listOfBlades){
+					current.drawGrass();
+				}
 			}
 			GL11.glPopMatrix();
 			
-			GL11.glPushMatrix(); {
-				//calculates value
-				double x = Mouse.getX();
-				double y = Mouse.getY();
-				x = (x / 100) - 3.2;
-				y = (y / 100) - 2.4;
-				GL11.glTranslated(x, y, 0);
-				GL11.glRotated(angle, 0, 0, 1);
-				drawTriangles(1);
-
-			}
-			GL11.glPopMatrix();
-
 			Display.sync(60);
 			Display.update();
 
@@ -64,26 +59,7 @@ public class OGLTest {
 		Display.destroy();
 	}
 
-	public static void drawTriangles(float alpha) {
-		// Begin drawing
-		GL11.glBegin(GL11.GL_TRIANGLES);
-
-		// First triangle
-		// Top & Red
-		GL11.glColor4f(1.0f, 0.0f, 0.0f, alpha);
-		GL11.glVertex2f(0.0f, 1.0f);
-
-		// Right & Green
-		GL11.glColor4f(0.0f, 1.0f, 0.0f, alpha);
-		GL11.glVertex2f(1.0f, -0.8f);
-
-		// Left & Blue
-		GL11.glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
-		GL11.glVertex2f(-1.0f, -0.8f);
-
-		GL11.glEnd();
-	}
-
+	
 	public static void main(String args[]) {
 		OGLTest ct = new OGLTest();
 		ct.start();
