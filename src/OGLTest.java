@@ -6,6 +6,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.newdawn.slick.Color;
 
 public class OGLTest {
 	public void start() {
@@ -19,8 +20,13 @@ public class OGLTest {
 		
 		ArrayList<Blade> listOfBlades = new ArrayList<Blade>();
 		Blade testBlade;
-		for(int i = 0; i < 100; i++){
-			testBlade = new Blade((float)Math.random()*6.8f - 3.4f, 0, .1f, .5f, (float)Math.random() -.5f, .5f, 0.01f);
+		
+		int numBlades = 2800;
+		for(int i = 0; i < numBlades; i++){
+			float depth = ((float)numBlades-i)/numBlades;
+			Color c = new Color(.1f, depth*.7f + .3f, .1f);
+			float vel = (float) Math.random()*.05f;
+			testBlade = new Blade((float)Math.random()*6.8f - 3.4f, -2.6f+depth*1.6f, .1f*(1.5f-depth), .5f*(1.5f-depth), (float)Math.random() -.5f, .8f, vel, c);
 			listOfBlades.add(testBlade);
 		}
 		// Init OpenGL
@@ -32,6 +38,7 @@ public class OGLTest {
 		//THIS LINE
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glClearColor(100/255f, 149/255f, 237/255f, 1);
 		
 		boolean quit = false;
 		double angle = 0;
@@ -42,9 +49,13 @@ public class OGLTest {
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
 			GL11.glPushMatrix(); {
+				float x = Mouse.getX()/100f - 3.2f;
+				float y = Mouse.getY()/100f - 2.4f;
+				float dx = Mouse.getDX()/100f;
+				float dy = Mouse.getDY()/100f;
 				for(Blade current : listOfBlades){
 					current.drawGrass();
-					current.update();
+					current.update(x, y, dx, dy);
 				}
 			}
 			GL11.glPopMatrix();
