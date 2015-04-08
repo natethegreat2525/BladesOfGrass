@@ -21,6 +21,10 @@ public class OGLTest {
 		GL11.glOrtho(-3.2, 3.2, -2.4, 2.4, -1, 1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
+		//THIS LINE
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+		
 		boolean quit = false;
 		double angle = 0;
 
