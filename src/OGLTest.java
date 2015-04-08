@@ -21,7 +21,7 @@ public class OGLTest {
 		ArrayList<Blade> listOfBlades = new ArrayList<Blade>();
 		Blade testBlade;
 		
-		int numBlades = 2800;
+		int numBlades = 3500;
 		for(int i = 0; i < numBlades; i++){
 			float depth = ((float)numBlades-i)/numBlades;
 			Color c = new Color(.1f, depth*.7f + .3f, .1f);
@@ -47,7 +47,7 @@ public class OGLTest {
 			angle += .5;
 			// Clear the screen.
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-
+			drawRectangle(new Color(0f,1f,0f, 1f), new Color(0f, .3f, 0f), -3.4f, -2.4f, 6.8f, 1.4f);
 			GL11.glPushMatrix(); {
 				float x = Mouse.getX()/100f - 3.2f;
 				float y = Mouse.getY()/100f - 2.4f;
@@ -71,7 +71,28 @@ public class OGLTest {
 		Display.destroy();
 	}
 
-	
+	public static void drawRectangle(Color rgb, Color rgb2, float x, float y, float width, float height){
+		// Begin drawing
+		GL11.glBegin(GL11.GL_QUADS);
+		
+		//bottom left
+		GL11.glColor4f(rgb2.r, rgb2.g, rgb.b, rgb.a);
+		GL11.glVertex2f(x, y);
+		
+		//top left
+		GL11.glColor4f(rgb.r, rgb.g, rgb.b, rgb.a);
+		GL11.glVertex2f(x, y + height);
+		
+		//top right
+		GL11.glColor4f(rgb.r, rgb.g, rgb.b, rgb.a);
+		GL11.glVertex2f(x + width, y + height);
+		
+		//bottom right
+		GL11.glColor4f(rgb2.r, rgb2.g, rgb.b, rgb.a);
+		GL11.glVertex2f(x + width, y);
+
+		GL11.glEnd();
+	}
 	public static void main(String args[]) {
 		OGLTest ct = new OGLTest();
 		ct.start();
