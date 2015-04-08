@@ -39,6 +39,17 @@ public class OGLTest {
 
 			}
 			GL11.glPopMatrix();
+			
+			GL11.glPushMatrix(); {
+				//calculates value
+				double value = Mouse.getY();
+				value = (value / 100) - 2.4;
+				GL11.glTranslated(0, value, 0);
+				GL11.glRotated(angle, 0, 0, 1);
+				drawTriangles();
+
+			}
+			GL11.glPopMatrix();
 
 			Display.sync(60);
 			Display.update();
@@ -62,24 +73,11 @@ public class OGLTest {
 
 		// Right & Green
 		GL11.glColor3f(0.0f, 1.0f, 0.0f);
-		GL11.glVertex2f(1.0f, 1.0f);
+		GL11.glVertex2f(1.0f, -0.8f);
 
 		// Left & Blue
 		GL11.glColor3f(0.0f, 0.0f, 1.0f);
-		GL11.glVertex2f(1.0f, -1.0f);
-
-		// second triangle
-		// Top & Red
-		GL11.glColor3f(1.0f, 0.0f, 0.0f);
-		GL11.glVertex2f(0.0f, -1.0f);
-
-		// Right & Green
-		GL11.glColor3f(0.0f, 1.0f, 0.0f);
-		GL11.glVertex2f(-1.0f, -1.0f);
-
-		// Left & Blue
-		GL11.glColor3f(0.0f, 0.0f, 1.0f);
-		GL11.glVertex2f(-1.0f, 1.0f);
+		GL11.glVertex2f(-1.0f, -0.8f);
 
 		GL11.glEnd();
 	}
