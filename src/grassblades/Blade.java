@@ -1,3 +1,4 @@
+package grassblades;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
