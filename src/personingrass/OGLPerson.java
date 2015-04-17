@@ -23,7 +23,7 @@ public class OGLPerson {
 		
 		ArrayList<Blade> listOfBlades = new ArrayList<Blade>();
 		Blade testBlade;
-		Person testPerson = new Person(0, 0);
+		Person testPerson = new Person(0,-2f, new Color(1, 0, 0, 1f));
 		
 		int numBlades = 1000;
 		for(int i = 0; i < numBlades; i++){
@@ -60,6 +60,9 @@ public class OGLPerson {
 				for(Blade current : listOfBlades){
 					current.drawGrass();
 					current.update(x, y, dx, dy);
+					if(current.x > testPerson.x && testPerson.x + .5f > current.x){
+						current.setHeight(testPerson.y - current.y);
+					}
 				}
 			}
 			
@@ -69,7 +72,7 @@ public class OGLPerson {
 				float dx = Mouse.getDX()/100f;
 				float dy = Mouse.getDY()/100f;
 				testPerson.drawPerson();
-				testPerson.update(x, y);
+				testPerson.update();
 			}
 			GL11.glPopMatrix();
 			

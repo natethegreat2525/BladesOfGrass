@@ -12,20 +12,28 @@ public class Person {
 	boolean moveRight;
 	int keyRight = Keyboard.KEY_RIGHT;
 	int keyLeft = Keyboard.KEY_LEFT;
+	Color color;
 	
-	public Person(float x, float y){
+	public Person(float x, float y, Color color){
 		this.x = x;
 		this.y = y;
+		this.color = color;
 		moveLeft = false;
 		moveRight = false;
 	}
 	
 	public void drawPerson(){
-		drawRectangle(new Color(0f,1f,0f, 1f), new Color(0f, .3f, 0f), -1f, -1f, 1f, 1f);
+		drawRectangle(color, x, y, .5f, .5f);
 	}
 	
 	public void update(){
 		getKeyInput();
+		if(moveLeft){
+			x = x - .02f;
+		}
+		if(moveRight){
+			x = x + .02f;
+		}
 	}
 	
 	public void getKeyInput() {
@@ -38,12 +46,12 @@ public class Person {
 		}
 	}
 	
-	public static void drawRectangle(Color rgb, Color rgb2, float x, float y, float width, float height){
+	public static void drawRectangle(Color rgb,  float x, float y, float width, float height){
 		// Begin drawing
 		GL11.glBegin(GL11.GL_QUADS);
 		
 		//bottom left
-		GL11.glColor4f(rgb2.r, rgb2.g, rgb.b, rgb.a);
+		GL11.glColor4f(rgb.r, rgb.g, rgb.b, rgb.a);
 		GL11.glVertex2f(x, y);
 		
 		//top left
@@ -55,7 +63,7 @@ public class Person {
 		GL11.glVertex2f(x + width, y + height);
 		
 		//bottom right
-		GL11.glColor4f(rgb2.r, rgb2.g, rgb.b, rgb.a);
+		GL11.glColor4f(rgb.r, rgb.g, rgb.b, rgb.a);
 		GL11.glVertex2f(x + width, y);
 
 		GL11.glEnd();

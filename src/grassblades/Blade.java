@@ -5,10 +5,10 @@ import org.newdawn.slick.Color;
 
 
 public class Blade {
-	float x;
-	float y;
+	public float x;
+	public float y;
 	float width;
-	float height;
+	public float height;
 	float sway;
 	float alpha;
 	float swayVelocity;
@@ -67,5 +67,11 @@ public class Blade {
 			swayVelocity -= sway*.03f;
 		}
 		swayVelocity *= .99f;
+		
+		height += .001;
+	}
+	
+	public void setHeight(float height){
+		this.height = height;
 	}
 }
